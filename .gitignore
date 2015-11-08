@@ -1,0 +1,11 @@
+# C output files
+################
+*.sym
+*.lss
+*.eep
+*.hex
+*.map
+*.elf
+*.o
+*.lst
+*.d
