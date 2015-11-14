@@ -21,17 +21,17 @@ void convertStrningToKeys(char* text, uint8_t* keys, int size)
 {
 	for(int i =0; i<size; i++)
 	{
-		if(text[i] >= 97 && text[i]<=122)//a-z
+		if(text[i] >= 97 && text[i] <= 122)//a-z
 		{
-			assignKey(keys, i, text[i]-93, 0);
+			assignKey(keys, i, text[i] - 93, 0);
 		}
-		else if(text[i] >= 65 && text[i]<=90)//A-Z
+		else if(text[i] >= 65 && text[i] <= 90)//A-Z
 		{
-			assignKey(keys, i, text[i]-61, KEY_LEFT_SHIFT);
+			assignKey(keys, i, text[i] - 61, KEY_LEFT_SHIFT);
 		}
-		else if(text[i] >= 49 && text[i]<=57)//1-9
+		else if(text[i] >= 49 && text[i] <= 57)//1-9
 		{
-			assignKey(keys, i, text[i]-19, 0);
+			assignKey(keys, i, text[i] - 19, 0);
 		}
 		else{
 			switch(text[i]){
@@ -150,8 +150,8 @@ void convertStrningToKeys(char* text, uint8_t* keys, int size)
 
 void writeKeys(uint8_t* keys, int textSize)
 {
-	for(int i =0; i<textSize; i++){
+	for(int i =0; i < textSize; i++){
 		usb_keyboard_press(keys[i*2], keys[i*2+1]);
-		_delay_ms(40);
+		_delay_ms(10);
 	}
 }
