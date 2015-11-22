@@ -1,8 +1,8 @@
 #ifndef type_heper_h__
 #define type_heper_h__
 
-void convertStrningToKeys(char* text, uint8_t* keys, int size);
+void typeLetter(char letter, void (*pressKeys)(uint8_t, uint8_t));
 
-void writeKeys(uint8_t* keys, int textSize);
+void tepeText(char* text);
 
 #endif
